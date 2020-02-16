@@ -1,18 +1,11 @@
 <template>
   <el-form :model="form" ref="form" :rules="rules" class="form">
     <el-form-item class="form-item" prop="username">
-      <el-input 
-      placeholder="用户名/手机" 
-      v-model="form.username"
-      ></el-input>
+      <el-input placeholder="用户名/手机" v-model="form.username"></el-input>
     </el-form-item>
 
     <el-form-item class="form-item" prop="password">
-      <el-input 
-      placeholder="密码" 
-      type="password" 
-      v-model="form.password" 
-      ></el-input>
+      <el-input placeholder="密码" type="password" v-model="form.password"></el-input>
     </el-form-item>
 
     <p class="form-text">
@@ -44,22 +37,18 @@ export default {
   methods: {
     // 提交登录
     handleLoginSubmit() {
-        // 通过ref获取表单数据
-        // el-from都有一个validate的方法用于验证的
-        this.$refs.form.validate(valid=>{
-            if(valid){
-                this.$axios({
-                    url:"/accounts/login",
-                    method:"post",
-                    data:this.form
-                }).then(res=>{
-                    console.log(res);
-                    const data = res.data;
-                    // 通过commit调用mutations中的方法，把登录成功后的数据传到仓库
-                    this.$store.commit('user/setUserInfo',data)
-                })
-            }
-        })
+      // 通过ref获取表单数据
+      // el-from都有一个validate的方法用于验证的
+      this.$refs.form.validate(valid => {
+        if (valid) {
+          // 通过dispatch调用actions中的方法
+          this.$store.dispatch("user/login", this.form).then(() => {
+            this.$message.success("登录成功");
+            // 登录成功跳转到首页
+            this.$router.push("/");
+          });
+        }
+      });
     }
   }
 };
