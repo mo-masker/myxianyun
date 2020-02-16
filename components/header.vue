@@ -55,7 +55,7 @@ export default {
         handleLogout(){},
     },
     mounted(){
-        // console.log(this.$store.state.user.name);
+        console.log(this.$store.state.user.userInfo.token);
     }
 }
 </script>

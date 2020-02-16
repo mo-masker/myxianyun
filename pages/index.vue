@@ -80,7 +80,7 @@ export default {
     this.$axios({
       url: "/scenics/banners"
     }).then(res => {
-      console.log(res);
+      // console.log(res);
       const { data } = res.data;
       this.banners = data;
     });
@@ -89,7 +89,7 @@ export default {
   methods:{
     // 点击tab栏触发的事件
     handleClick(index){
-      console.log(index);
+      // console.log(index);
       // 当点击的是机票，把路由跳转的地址更改为机票首页
       if(index == 2){
         this.$router.push({

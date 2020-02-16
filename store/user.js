@@ -24,7 +24,8 @@ export const actions = {
             method: "post",
             data
         }).then(res => {
-            const {data} = res.data;
+            const data = res.data;
+            console.log(res);
             // 通过commit调用mutations中的方法，把登录成功后的数据传到仓库
             store.commit('setUserInfo', data)
         })
