@@ -52,10 +52,16 @@
 export default {
   methods: {
         // 用户退出
-        handleLogout(){},
+        handleLogout(){
+            // 清空数据属于设置
+            this.$store.commit("user/setUserInfo",{
+                token:"",
+                user:{}
+            })
+        },
     },
     mounted(){
-        console.log(this.$store.state.user.userInfo.token);
+        // console.log(this.$store.state.user.userInfo.token);
     }
 }
 </script>
